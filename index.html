@@ -33,7 +33,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Capa de Fondo Fija - Independiente para evitar distorsiones */
+        /* Capa de Fondo Fija */
         #fixed-bg {
             position: fixed;
             top: 0;
@@ -51,7 +51,7 @@
             opacity: 1;
         }
 
-        /* Estilos del Sobre Animado (Pantalla de Entrada) */
+        /* Pantalla de Entrada */
         #envelope-screen {
             position: fixed;
             top: 0;
@@ -195,7 +195,7 @@
             animation: pulse 2s infinite;
         }
 
-        /* Contenido de la Invitación Principal */
+        /* Invitación Principal */
         #main-invitation {
             min-height: 100vh;
             position: relative;
@@ -206,7 +206,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 1.5s ease-out 0.6s, transform 1.5s ease-out 0.6s;
-            z-index: 2; /* Por encima del fondo fijo */
+            z-index: 2;
         }
 
         body.content-active #main-invitation {
@@ -229,7 +229,6 @@
             z-index: 3;
         }
 
-        /* Elementos Decorativos */
         .lotus-header {
             margin-bottom: 20px;
         }
@@ -241,7 +240,19 @@
             filter: drop-shadow(0 0 8px var(--magic-glow));
         }
 
-        /* Tipografía */
+        /* Foto Hero */
+        .hero-photo {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 12px;
+            border: 3px solid var(--gold-secondary);
+            margin: 15px auto 35px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            display: block;
+            object-fit: cover;
+        }
+
         .section-tag {
             font-family: 'Cinzel', serif;
             font-size: 12px;
@@ -255,7 +266,7 @@
             font-family: 'Pinyon Script', cursive;
             font-size: 65px;
             color: var(--gold-primary);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-shadow: 0 2px 10px rgba(223, 186, 107, 0.3);
             line-height: 1.1;
         }
@@ -287,7 +298,6 @@
             margin: 30px auto;
         }
 
-        /* Bloques de Información */
         .info-block {
             margin-bottom: 25px;
         }
@@ -314,6 +324,41 @@
             font-size: 22px;
             color: var(--text-light);
             margin: 5px 0;
+            letter-spacing: 1px;
+        }
+
+        /* Itinerario */
+        .itinerary-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px auto 0 auto;
+            max-width: 320px;
+            text-align: left;
+        }
+
+        .itinerary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(223, 186, 107, 0.3);
+        }
+
+        .itinerary-item:last-child {
+            border-bottom: none;
+        }
+
+        .itinerary-event {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            color: var(--text-light);
+        }
+
+        .itinerary-time {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            color: var(--gold-primary);
+            font-weight: 600;
             letter-spacing: 1px;
         }
 
@@ -483,7 +528,7 @@
             min-height: 80px;
         }
 
-        /* Luciérnagas Animadas (Capa frontal absoluta sobre toda la pantalla) */
+        /* Luciérnagas Animadas */
         #fireflies-container {
             position: fixed;
             top: 0;
@@ -491,7 +536,7 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 100; /* Flotan por delante de todo el contenido */
+            z-index: 100;
             overflow: hidden;
         }
 
@@ -573,6 +618,8 @@
             .countdown-number { font-size: 20px; }
             #music-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
             #music-btn svg { width: 20px; height: 20px; }
+            .itinerary-event { font-size: 17px; }
+            .itinerary-time { font-size: 12px; }
         }
     </style>
 </head>
@@ -581,7 +628,7 @@
     <!-- Capa de Fondo Estática -->
     <div id="fixed-bg"></div>
 
-    <!-- Contenedor para las luciérnagas dinámicas (Capa Frontal) -->
+    <!-- Contenedor para las luciérnagas dinámicas -->
     <div id="fireflies-container"></div>
 
     <!-- Audio de Fondo -->
@@ -621,6 +668,9 @@
 
             <div class="section-tag">Mis XV Años</div>
             <h1 class="main-title">Katia Sofía</h1>
+            
+            <!-- Foto Hero -->
+            <img src="assets/foto1.jpg" alt="Katia Sofía" class="hero-photo">
             
             <p class="phrase">
                 "La vida es un cuento escrito por la mano de Dios, y en este cuento hoy me toca a mi sentirme una princesa. Gracias por formar parte de mi vida y acompañarme en esta noche mágica."
@@ -732,11 +782,44 @@
 
                 <div class="divider"></div>
 
+                <!-- Itinerario -->
+                <div class="info-block">
+                    <div class="info-label">Itinerario del Evento</div>
+                    <ul class="itinerary-list">
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Misa de acción de gracias</span>
+                            <span class="itinerary-time">6:00 PM</span>
+                        </li>
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Recepción</span>
+                            <span class="itinerary-time">7:00 PM</span>
+                        </li>
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Vals</span>
+                            <span class="itinerary-time">8:00 PM</span>
+                        </li>
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Cena</span>
+                            <span class="itinerary-time">9:00 PM</span>
+                        </li>
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Baile</span>
+                            <span class="itinerary-time">9:30 PM</span>
+                        </li>
+                        <li class="itinerary-item">
+                            <span class="itinerary-event">Fin del evento</span>
+                            <span class="itinerary-time">12:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="divider"></div>
+
                 <!-- Ceremonia Religiosa con Mapa -->
                 <div class="info-block">
                     <div class="info-label">Ceremonia Religiosa</div>
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1000000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.289158524246!2d-93.3773236245652!3d16.762283420511455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecc7b6ca420bdf%3A0xc5dabbc9ad1ba5c7!2sParroquia%20de%20San%20Juan%20Bautista!5e0!3m2!1ses-419!2smx!4v1783899919586!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                     </div>
                 </div>
 
@@ -746,7 +829,7 @@
                 <div class="info-block">
                     <div class="info-label">Recepción</div>
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1000000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.409940587599!2d-93.37292982456529!3d16.756268220679015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecc709dcb6b5c3%3A0x12f8fea1e4dc65d5!2sQUINTA%20CARMELITA!5e0!3m2!1ses-419!2smx!4v1783899879265!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                     </div>
                 </div>
 
